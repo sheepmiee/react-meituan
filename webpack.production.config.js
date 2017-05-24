@@ -23,7 +23,6 @@ module.exports = {
     filename: "[name].[chunkhash:8].js",
     publicPath: '/'
   },
-
   resolve:{
     extensions:['', '.js','.jsx']
   },
@@ -42,10 +41,6 @@ module.exports = {
   ],
 
   plugins: [
-    // webpack 内置的 banner-plugin
-    new webpack.BannerPlugin("Copyright by wangfupeng1988@github.com."),
-
-    // html 模板插件
     new HtmlWebpackPlugin({
       template: __dirname + '/app/index.tmpl.html'
     }),
@@ -62,7 +57,6 @@ module.exports = {
 
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        //supresses warnings, usually from module minification
         warnings: false
       }
     }),
@@ -76,9 +70,9 @@ module.exports = {
       filename: '[name].[chunkhash:8].js'
     }),
 
-    // 可在业务 js 代码中使用 __DEV__ 判断是否是dev模式（dev模式下可以提示错误、测试报告等, production模式不提示）
+    // 可在业务js代码中使用 __DEV__ 判断是否是dev模式（dev模式下可以提示错误、测试报告等, production模式不提示,在package.json配置的dev脚本命令中定义了NODE_ENV的值，所以这里可以获取到,也可以直接写'false'）
     new webpack.DefinePlugin({
       __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))
     })
   ]
-}
+};

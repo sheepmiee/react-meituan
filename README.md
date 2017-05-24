@@ -1,8 +1,20 @@
-## 高仿美团网手机端SPA
-### 技术栈
+# 高仿美团网手机端SPA
+## 技术栈
 ---
 react + react-router + redux + webpack + less + ES6/7 + fetch
-### 项目结构树
+## 项目运行
+---
+#### 注意：由于使用ES6/7等新语法，node.js必须是6.0以上版本
+```
+git clone https://github.com/sheepmiee/react-meituan.git  
+
+cd react-meituan
+
+npm install
+
+npm run dev
+```
+## 项目结构树
 ---
 ```
 .
@@ -157,16 +169,22 @@ react + react-router + redux + webpack + less + ES6/7 + fetch
 ├─webpack.production.config.js               // webpack上线配置文件
 
 ```
-### 页面截图展示(按照开发流程顺序)
-#### 首页页--城市页
+## 页面截图展示(按照开发流程顺序)
+### 首页页--城市页
 ![home](./screenshots/home.png) ![city](./screenshots/city.png)
-#### 搜索页--商户详情页
+### 搜索页--商户详情页
 ![search](./screenshots/search.png) ![detail](./screenshots/detail.png)
-#### 登录页--用户页
+### 登录页--用户页
 ![login](./screenshots/login.png) ![user](./screenshots/user.png)
 
-### 部分功能动态展示
-#### 首页加载与城市变更--搜索页加载
+## 部分功能动态展示
+### 首页加载与城市变更--搜索页加载
 ![homeLoadAndChangeCity](./screenshots/gif/homeLoadAndChangeCity.gif) ![searchLoad](./screenshots/gif/searchLoad.gif)
 #### 收藏与登陆--用户评价
 ![storeAndLogin](./screenshots/gif/storeAndLogin.gif) ![evaluate](./screenshots/gif/evaluate.gif)
+
+## 说明
+---
+> react的学习之路是艰辛的，像升级打怪一样走过来了，回过头却发现，也就那么回事（此处请允许我装B一分钟，前方的路其实还很远。。）
+
+> 这里推荐一个react项目，其实主要是推荐一下这位兄台的react的个人感悟，对于react初学很有帮助[地址在这里](https://github.com/bailicangdu/react-pxq)

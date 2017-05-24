@@ -1,10 +1,10 @@
 {
-  "name": "my_meituan",
+  "name": "react-meituan",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --progress --colors",
+    "dev": "NODE_ENV=dev webpack-dev-server --progress --colors",
     "mock":"node --harmony ./mock/server.js",
     "build":"rm -rf ./build && NODE_ENV=production webpack --config ./webpack.production.config.js --progress --colors"
   },

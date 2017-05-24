@@ -12,8 +12,8 @@ module.exports={
       {test:/\.jsx?$/,exclude:/node_modules/,loader:'babel-loader'},
       {test:/\.css$/,exclude:/node_modules/,loader:'style-loader!css-loader!postcss-loader'},
       {test:/\.less$/,exclude:/node_modules/,loader:'style-loader!css-loader!postcss-loader!less-loader'},
-      { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000' },  // 限制大小5kb
-      { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, loader:'url-loader?limit=5000'} // 限制大小小于5k
+      { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000' }, // 限制大小5kb
+      { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, loader:'url-loader?limit=5000'}
     ]
   },
   postcss: [require('autoprefixer') //调用autoprefixer插件
@@ -22,14 +22,16 @@ module.exports={
     new HtmlWebpackPlugin({template:'./app/index.html'}),
     // 热加载插件
     new webpack.HotModuleReplacementPlugin(),
+
+    //自动打开浏览器的插件
     new OpenBrowserPlugin({url:'http://localhost:8080'}),
 
-    // 可在业务 js 代码中使用 __DEV__ 判断是否是dev模式（dev模式下可以提示错误、测试报告等, production模式不提示）
+    // 可在业务js代码中使用 __DEV__ 判断是否是dev模式（dev模式下可以提示错误、测试报告等, production模式不提示,在package.json配置的dev脚本命令中定义了NODE_ENV的值，所以这里可以获取到，也可以直接写'true'）
     new webpack.DefinePlugin({__DEV__:JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))})
   ],
   devServer:{
     proxy: {
-      // 凡是 `/api` 开头的 http 请求，都会被代理到 localhost:3000 上，由 koa 提供 mock 数据。
+      //  '/api' 开头的http请求，会被代理到localhost:3000上。
       '/api': {
         target: 'http://localhost:3000',
         secure: false

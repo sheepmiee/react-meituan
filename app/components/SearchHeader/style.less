@@ -1,0 +1,33 @@
+.search-header{
+  padding:10px;
+  *{
+    color: #fff;
+    font-size: 16px;
+    line-height: 1;
+  }
+  position: relative;
+
+
+  .back-icon{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin-top: 6px;
+    left: 10px;
+  }
+  .search-container {
+    animation:run .2s linear 0s forwards;
+    margin: 0 20px 0 30px;
+  }
+}
+
+@keyframes run {
+  from{
+    margin-left: 50px;
+    margin-right: 40px;
+  }
+  to{
+    margin-left: 30px;
+    margin-right: 20px;
+  }
+}

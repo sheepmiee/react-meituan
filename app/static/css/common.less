@@ -1,0 +1,43 @@
+@colorRed:rgb(233, 32, 61);
+@colorCyan:rgb(6, 193, 147);
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "微软雅黑","Times New Roman",Georgia,Serif;
+  }
+  #app{
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+a{
+  text-decoration: none;
+}
+
+input {
+  outline:none;
+}
+
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.clear-fix:after {
+  display: table;
+  content: '';
+  clear: both;
+}
+.theme-background{
+  background-color: @colorCyan!important;
+}
+.theme-font{
+  color: @colorCyan!important;
+}

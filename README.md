@@ -12,6 +12,8 @@ cd react-meituan
 
 npm install
 
+npm run mock
+
 npm run dev
 ```
 ## 项目结构树

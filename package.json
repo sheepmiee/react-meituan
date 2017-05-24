@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=dev webpack-dev-server --progress --colors",
+    "dev": "set NODE_ENV=dev && webpack-dev-server --progress --colors",
     "mock":"node --harmony ./mock/server.js",
-    "build":"rm -rf ./build && NODE_ENV=production webpack --config ./webpack.production.config.js --progress --colors"
+    "build":"re/s/q build && NODE_ENV=production webpack --config ./webpack.production.config.js --progress --colors"
   },
   "keywords": [],
   "author": "",

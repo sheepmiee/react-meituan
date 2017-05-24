@@ -16,6 +16,9 @@ module.exports={
       { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, loader:'url-loader?limit=5000'}
     ]
   },
+  eslint: {
+    configFile: '.eslintrc'
+  },
   postcss: [require('autoprefixer') //调用autoprefixer插件
   ],
   plugins:[

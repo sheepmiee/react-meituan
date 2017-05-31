@@ -187,6 +187,8 @@ npm run dev
 
 ## 说明
 ---
+> 洗了一些这个项目的一些总结与感悟[点这里](./notes.md)
 > react的学习之路是艰辛的，像升级打怪一样走过来了，回过头却发现，也就那么回事（此处请允许我装B一分钟，前方的路其实还很远。。）
 
-> 这里推荐一个react项目，其实主要是推荐一下这位兄台的react的个人感悟，对于react初学很有帮助[地址在这里](https://github.com/bailicangdu/react-pxq)
+> 这里推荐一个react项目，其实主要是推荐一下这位兄台的react的个人感悟，对于react初学很有帮助
+[地址在这里](https://github.com/bailicangdu/react-pxq?_blank)

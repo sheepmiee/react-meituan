@@ -1,36 +1,80 @@
 ## SPA(Single Page Application)
 单页面应用,就是只有一张Web页面的应用。单页应用程序 (SPA) 是加载单个HTML 页面并在用户与应用程序交互时动态更新该页面的Web应用程序。
+
 ### 单页面应用的优点
 1. 最大的好处是用户体验，对于内容的改动不需要加载整个页面。
 2. 数据层和UI的分离，可以重新编写一个原生的移动设备应用程序而不用大动干戈（同一套后端程序代码，不用修改就可以用于Web界面、手机、平板等多种客户端）。
 3. 高效。它对服务器压力很小，消耗更少的带宽，能够与面向服务的架构更好地结合。
+
 ### 单页面应用的缺点
 1. 不利于SEO
 2. 初次加载耗时增多
 3. 导航不可用；前进、后退、地址栏等，需要程序进行管理；
 书签，需要程序来提供支持；
+
 ### 应用场景
 那么单页应用的应用如何呢？看了一些资料，总觉出来单页面应用有两个硬伤：
 首屏加载慢（大量js导致首屏加载慢）、seo不友好
 如何应用SPA或者是否应用SPA，大概需要考虑以下这几点：
 1. 交互体验
 不同的应用面对不同人群，会有不同的交互体验需求。
-
 2. 工程代价
 大型网站转spa会有很大的代价。
-
 3. 容错问题
 SPA所有脚本都加进来，如果出现一个JS错误，那很可能整个网站就挂掉了，风险很大。
-
 4. 是否必要
 简单呈现内容的网站，没有必要用spa。增加了开发和调试的复杂性，但是除了效果更酷炫点，没有多少实用价值。
-
 5. 是否需要兼容低版本的ie浏览器
 
 ### SPA总结
 综合了解了这种SPA单页应用和传统的多页面应用，在以后的开发中，我可能会采取单页和多页相结合的方式，该跳转的地方还是跳转，结合单页模式的用户体验优点，将用户体验发挥到极致，因为我觉得用户体验是最重要的东西之一。
+## 项目安装的模块解释
+开发依赖模块：
+- autoprefixer：postcss-loader的一个插件,使用一个数据库根据当前浏览器的普及度以及属性支持自动给你的css添加前缀前缀：[详情点这里](http://www.jianshu.com/p/f5b0b92e6b0f?_blank)
+- babel-core：babel转码的核心，必须安装[bable详情点这里(阮一峰)](http://www.ruanyifeng.com/blog/2016/01/babel.html?_blank)
+- babel-loader：babel加载器，配置babel编译必备
+- babel-plugin-add-module-exports：babel对export default{}支持不好，不想写成module.exports就需要安装[点这里](https://segmentfault.com/q/1010000005761096?_ea=902448?_blank)
+- babel-plugin-react-transform：代替react-hot-loader的插件，是基于Babel Plugin的。这是一个基本的架子，要实现热替换还要安装其他插件。
+- react-transform-hmr：安装这个才能实现热替换的功能。
+- babel-preset-es2015：babel转译预设规则(转es5)
+- babel-preset-react：babel转译预设规则(react的jsx)
+- css-loader：允许引入css文件
+- style-loader：为了在html中以style的方式嵌入css
+- postcss-loader：一个插件平台，这里只要用其autoprefixer功能
+- eslint-loader：代码规范检查[点这里](http://www.tuicool.com/articles/7JZZJzn?_blank)
+- extract-text-webpack-plugin：分离css文件
+- url-loader：图片与字体加载器,file-loader的上层封装,依赖file-loader
+- file-loader：图片与字体加载器
+- html-webpack-plugin：这样可以将输出的文件名自动注入到html中，不用我们自己手写
+- json-loader：处理json文件
+- koa：node框架
+- koa-router：koa路由
+- less：less编译css
+- less-loader：less加载器
+- open-browser-webpack-plugin：打包完成自动打开浏览器的插件
+- webpack：一代神器
+- webpack-dev-server：一个小型的Node.js Express服务器，可实现代码修改自动[看这里](https://segmentfault.com/a/1190000006964335_blank)
+  
+上线依赖模块：
+- es6-promise：使用fetch时为了兼容老版本需要安装
+- immutable：react性能优化，需要学习新的API[immutable](https://zhuanlan.zhihu.com/p/20295971?columnSlug=purerender_blank)
+- react：
+- react-addons-css-transition-group：实现组件出现与消失的css3过渡动画[官方地址](https://facebook.github.io/react/docs/animation.html_blank)
+- react-addons-pure-render-mixin：用以替换shouldComponentUpdate，优化性能
+- react-dom：
+- react-redux：
+- react-router：
+- react-swipe：轮播图插件,引入swipe-js-iso,创建reat组件
+- swipe-js-iso：基于swipe.js的一个Pull Request
+- redux：
+- whatwg-fetch：fetch
 
-## webpack 
+## webpack配置详解
+### resolve
+定义了解析模块路径时的配置，常用的就是extensions;可以用来指定模块的后缀，这样在引入模块时就不需要写后缀
+```
+resolve:{extensions:['', '.js','.jsx']}
+```
 ### postcss
 在加载css/less时，用到postcss,主要使用autoprefixer功能，能自动加css3的浏览器前缀；
 ```
@@ -40,48 +84,171 @@ postcss:[
 
 ```
 
-### HtmlWebpackPlugin
+### html-webpack-plugin
 html模板插件
+```
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+plugins:[
+    new HtmlWebpackPlugin({template:'./app/index.html'})
+]
+
+```
 
 ### webpack.HotModuleReplacementPlugin
-http://segmentfault.com/a/1190000002767365#articleHeader6
+```
+var webpack = require('webpack');
+plugins:[
+    new webpack.HotModuleReplacementPlugin()
+]
+```
+[看这里](http://segmentfault.com/a/1190000002767365#articleHeader6?_blank)
 
+### open-browser-webpack-plugin
+```
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+plugins:[
+    new OpenBrowserPlugin({url:'http://localhost:8080'})
+]
+```
+### DefinePlugin
+可在业务js代码中使用 __DEV__ 判断是否是dev模式（dev模式下可以提示错误、测试报告等, production模式不提示,在package.json配置的dev脚本命令中定义了NODE_ENV的值，所以这里可以获取到，也可以直接写'true'）
+```
+var webpack = require('webpack');
+plugins:[
+    new webpack.DefinePlugin({__DEV__:JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))})
+]
+```
 
+### webpack-dev-server 代理
+```
+devServer: {
+        proxy: {
+          // 凡是 `/api` 开头的 http 请求，都会被代理到 localhost:3000 上，由 koa 提供 mock 数据。
+          // koa 代码在 ./mock 目录中，启动命令为 npm run mock
+          '/api': {
+            target: 'http://localhost:3000',
+            secure: false
+          }
+        },
+        contentBase: "./public", //本地服务器所加载的页面所在的目录
+        colors: true, //终端中输出结果为彩色
+        historyApiFallback: true, //不跳转
+        inline: true, //实时刷新
+        hot: true  // 使用热加载插件 HotModuleReplacementPlugin
+    }
+```
+### ExtractTextPlugin
+webpack.production.config中配置，实现上线css与js代码分离
+```
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+loaders: [
+      { test: /\.less$/, exclude: /node_modules/, loader: ExtractTextPlugin.extract('style', 'css!postcss!less') },
+      { test: /\.css$/, exclude: /node_modules/, loader: ExtractTextPlugin.extract('style', 'css!postcss') }
+    ]
+plugins:[
+    new ExtractTextPlugin('[name].[chunkhash:8].css')
+]
+```
+### vender
+```
+entry: {
+    app: path.resolve(__dirname, 'app/index.jsx'),
+    // 将 第三方依赖 单独打包
+    vendor: [
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-router',
+      'redux',
+      'es6-promise',
+      'whatwg-fetch',
+      'immutable'
+    ]
+  }
+output: {
+    path: __dirname + "/build",
+    filename: "[name].[chunkhash:8].js",
+    publicPath: '/'
+  }
+ plugins:[
+    //提供公共代码
+     new webpack.optimize.CommonsChunkPlugin({
+           name: 'vendor',
+           filename: '[name].[chunkhash:8].js'
+         })
+ ]
+```
 ### import React from 'react'引用过程？
-'react'在./package.json文件中查找，即dependencies中的'react'，npm 安装的 react 的物理文件是存放在 ./node_modules/react中的，打开./node_modules/react/package.json找到"main": "react.js",，这里的main即指定了入口文件，即./node_modules/react/react.js这个文件。
-### jsx语法
-- {}大括号内是变量或者表达式，js注释也要写在大括号里
+npm 安装的 react 的物理文件是存放在 ./node_modules/react中的，打开./node_modules/react/package.json找到"main": "react.js",，这里的main即指定了入口文件，即./node_modules/react/react.js这个文件。
+
 ### react开发中的代码分离
 - page层:按页面拆分，每个页面有一个主页面index.jsx
 - subPage层：对于复杂页面，要将一个页面拆封成多个子页,不复杂的页面只写在index.jsx里即可
-- component层：对于不同页面内相同的组件，写在component层以便复用
+- component层：只用来展示数据的组件，对于不同页面内相同的组件，写在component层以便复用
+### react生命周期
+#### 组件在初始化的时候，会触发5个钩子函数：
+1. getDefaultProps()
+设置默认的props，也可以用dufaultProps设置组件的默认属性。
 
+2. getInitialState()
+在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this.state。此时可以访问this.props。
+
+3. componentWillMount()
+组件初始化时只调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改state。
+
+4. render()
+react最重要的步骤，创建虚拟dom，进行diff算法，更新dom树都在此进行。此时就不能更改state了。
+
+5. componentDidMount()
+组件渲染之后调用，可以通过this.getDOMNode()获取和操作dom节点，只调用一次。
+
+#### 更新时触发的5个钩子函数：
+
+6. componentWillReceivePorps(nextProps)
+组件初始化时不调用，组件接受新的props时调用。
+
+7. shouldComponentUpdate(nextProps, nextState)
+react性能优化非常重要的一环。组件接受新的state或者props时调用，我们可以设置在此对比前后两个props和state是否相同，如果相同则返回false阻止更新，因为相同的属性状态一定会生成相同的dom树，这样就不需要创造新的dom树和旧的dom树进行diff算法对比，节省大量性能，尤其是在dom结构复杂的时候。不过调用this.forceUpdate会跳过此步骤。
+
+8. componentWillUpdate(nextProps, nextState)
+组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改state
+
+9. render()
+
+10. componentDidUpdate()
+组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点。
+还有一个卸载钩子函数
+
+11. componentWillUnmount()
+组件将要卸载时调用，一些事件监听和定时器需要在此时清除。
+
+以上可以看出来react总共有10个周期函数（render重复一次），这个10个函数可以满足我们所有对组件操作的需求，利用的好可以提高开发效率和组件性能。
 ### 常用的生命周期在项目中怎么用到？
 - comopentDidMount
 组件第一次加载时渲染loading组件，一般在此获取网络数据，将数据赋值给状态，改变状态重新渲染页面。实际开始项目开发时，会经常用到。
 - shouldComponentUpdate
-主要用于性能优化，React 的性能优化也是一个很重要的话题，后面一并讲解。
+主要用于性能优化，React 的性能优化也是一个很重要的话题。
 - componentDidUpdate
 组件更新了之后触发的事件，一般用于清空并更新数据。实际开始项目开发时，会经常用到。
 - componentWillUnmount
 组件在销毁之前触发的事件，一般用户存储一些特殊信息，以及清理setTimeout事件等。
 
 ### react性能优化
-http://www.imooc.com/article/14932
 - 介绍PureComponent
-http://www.open-open.com/lib/view/1484466792204
+[点这里](http://www.open-open.com/lib/view/1484466792204?_blank)
 - 性能检测,检测优化结果
 npm i react-addons-perf --save
 ```
-// 性能测试 import Perf from 'react-addons-perf'; 
+// 性能测试 
+import Perf from 'react-addons-perf'; 
 if (__DEV__) { window.Perf = Perf }
-
 ```
+
 运行程序。在操作之前先运行Perf.start()开始检测，然后进行若干操作，运行Perf.stop停止检测，然后再运行Perf.printWasted()即可打印出浪费性能的组件列表。在项目开发过程中，要经常使用检测工具来看看性能是否正常。
 
 - PureRenderMixin 优化
 React 最基本的优化方式
-组件中的props和state一旦变化会导致组件重新更新并渲染，但是如果props和state没有变化也莫名其妙的触发更新了（这种情况确实存在），这就导致了无效渲染
+组件中的props和state一旦变化会导致组件重新更新并渲染，但是如果props和state没有变化也的触发更新了（这种情况确实存在，比如调用setState方法，但状态并没有改变），这就导致了无效渲染
 ```
 import React from 'react' ;
 import PureRenderMixin from 'react-addons-pure-render-mixin' ;
@@ -92,13 +259,12 @@ class List extends React.Component {
     } 
     //...
 }
-
 ```
 重写组件的shouldComponentUpdate函数，在每次更新之前判断props和state，如果有变化则返回true，无变化则返回false。
 因此，我们在开发过程中，在每个 React 组件中都尽量使用PureRenderMixin
 
 - Immutable.js 优化
-React 的终极优化是使用 Immutable.js 来处理数据，Immutable 实现了 js 中不可变数据的概念（不了的同学可以去查一下何为“不可变数据”）。
+React 的终极优化是使用 Immutable.js 来处理数据，Immutable 实现了 js 中不可变数据的概念（可以去查一下何为“不可变数据”）。
 但是也不是所有的场景都适合用它，当我们组件的props和state中的数据结构层次不深（例如普通的数组、对象等）的时候，就没必要用它。但是当数据结构层次很深（例如obj.x.y.a.b = 10这种），你就得考虑使用了。
 之所以不轻易使用是，Immutable 定义了一种新的操作数据的语法，如下。和我们平时操作 js 数据完全不一样，而且每个地方都得这么用，学习成本高、易遗漏，风险很高。
 ```
@@ -110,10 +276,23 @@ var map2 = map1.set('b', 50);
 因此，建议优化还是要从设计着手，尽量把数据结构设计的扁平一些，这样既有助于优化系统性能，又减少了开发复杂度和开发成本。
 
 ### react-router
-
-### redux
+注意：react-router4.0及以上版本语法有重大改变，老语法会报错
+```
+ <Router history={hashHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Home}></IndexRoute>
+        <Route path="city" component={City}></Route>
+        <Route path='/Login(/:router)' component={Login}/>
+        <Route path="user" component={User}></Route>
+        <Route path="search/:category(/:keyword)" component={Search}></Route>
+        <Route path="detail/:id" component={Detail}></Route>
+        <Route path="*" component={NotFound}></Route>
+      </Route>
+    </Router>
+```
+### 目录结构
 文件结构：
-- 入口文件，根目录下的index.js
+- 入口文件，源码文件夹app目录下的index.js
 需要用redux传递信息的组件用Provider包住
 ```
 const store = configureStore();
@@ -211,24 +390,7 @@ es6-promise.js可以使它很好的支持IE9以上的版本，IE8 需要改fetch
 2. 模拟动态接口：即自己用一个 web 框架，按照既定的接口和数据结构的要求，自己模拟后端接口的功能，让前端项目能顺利跑起来。该方式适用于新开发的项目，后端和前端同时开发。
 3. 转发线上接口：项目开发中，所有的接口直接用代理获取线上的数据，post 的数据也都直接提交到线上。该方式适用于成熟项目中。
 
-### webpack-dev-server 代理
-```
-devServer: {
-        proxy: {
-          // 凡是 `/api` 开头的 http 请求，都会被代理到 localhost:3000 上，由 koa 提供 mock 数据。
-          // koa 代码在 ./mock 目录中，启动命令为 npm run mock
-          '/api': {
-            target: 'http://localhost:3000',
-            secure: false
-          }
-        },
-        contentBase: "./public", //本地服务器所加载的页面所在的目录
-        colors: true, //终端中输出结果为彩色
-        historyApiFallback: true, //不跳转
-        inline: true, //实时刷新
-        hot: true  // 使用热加载插件 HotModuleReplacementPlugin
-    }
-```
+
 ### 最外层组件的作用
 在路由配置中，我们有一个最外层组件，App:
 ```
@@ -255,7 +417,6 @@ render() {
         </div>
         )
 }
-
 ```
 - 加载loading组件
 ```
@@ -265,13 +426,12 @@ render() {
         </div> 
     )        
 }
-
 ```
 ### module.exports与exports，export与export default之间的关系和区别
 
 - CommonJS模块规范
  为了方便，Node为每个模块提供一个exports变量，指向module.exports。可以直接在 exports 对象上添加方法，但是注意，不能直接将exports变量指向一个值，因为这样等于切断了exports与module.exports的联系。
- - ES6模块规范
+- ES6模块规范
  ```
  // 第一组
  export default function crc32() { // 输出
@@ -299,7 +459,6 @@ if(a==null)//这个判断即可
 ```
 let data = this.props.data
 <p>{item.comment}</p> {/*将data写成item了*/}
-
 ```
 结果导致在Comment组件里，获取到数据data后，this.setState({data})不成功，当时是用console.log调试，在setState之前可以获取到数据，但是在setState之后console没有任何反映，而且setState显示也没有生效，当时一直以为是数据的问题，调试了半天，数据肯定没问题，就在子组件找问题，找到后改掉就正常了
 
@@ -328,42 +487,4 @@ this.setState({myState: nextState}, ()=>{console.log(this.state.myState)})
 > 通常 state 中只来管理和渲染有关的状态 ，从而保证 setState 改变的状态都是和渲染有关的状态。这样子就可以避免不必要的重复渲染。其他和渲染无关的状态，可以直接以属性的形式保存在组件中，在需要的时候调用和改变，不会造成渲染。
  避免不必要的修改，当 state 的值没有发生改变的时候，尽量不要使用 setState 。虽然 shouldComponentUpdate 和 PureComponent 可以避免不必要的重复渲染，但是还是增加了一层 shallowEqual 的调用，造成多余的浪费。
 
-### react生命周期
-#### 组件在初始化的时候，会触发5个钩子函数：
-1. getDefaultProps()
-设置默认的props，也可以用dufaultProps设置组件的默认属性。
-
-2. getInitialState()
-在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this.state。此时可以访问this.props。
-
-3. componentWillMount()
-组件初始化时只调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改state。
-
-4. render()
-react最重要的步骤，创建虚拟dom，进行diff算法，更新dom树都在此进行。此时就不能更改state了。
-
-5. componentDidMount()
-组件渲染之后调用，可以通过this.getDOMNode()获取和操作dom节点，只调用一次。
-
-#### 更新时触发的5个钩子函数：
-
-6. componentWillReceivePorps(nextProps)
-组件初始化时不调用，组件接受新的props时调用。
-
-7. shouldComponentUpdate(nextProps, nextState)
-react性能优化非常重要的一环。组件接受新的state或者props时调用，我们可以设置在此对比前后两个props和state是否相同，如果相同则返回false阻止更新，因为相同的属性状态一定会生成相同的dom树，这样就不需要创造新的dom树和旧的dom树进行diff算法对比，节省大量性能，尤其是在dom结构复杂的时候。不过调用this.forceUpdate会跳过此步骤。
-
-8. componentWillUpdate(nextProps, nextState)
-组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改state
-
-9. render()
-
-10. componentDidUpdate()
-组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点。
-还有一个卸载钩子函数
-
-11. componentWillUnmount()
-组件将要卸载时调用，一些事件监听和定时器需要在此时清除。
-
-以上可以看出来react总共有10个周期函数（render重复一次），这个10个函数可以满足我们所有对组件操作的需求，利用的好可以提高开发效率和组件性能。
-### 
+###

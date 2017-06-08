@@ -30,10 +30,10 @@ SPA所有脚本都加进来，如果出现一个JS错误，那很可能整个网
 综合了解了这种SPA单页应用和传统的多页面应用，在以后的开发中，我可能会采取单页和多页相结合的方式，该跳转的地方还是跳转，结合单页模式的用户体验优点，将用户体验发挥到极致，因为我觉得用户体验是最重要的东西之一。
 ## 项目安装的模块解释
 开发依赖模块：
-- autoprefixer：postcss-loader的一个插件,使用一个数据库根据当前浏览器的普及度以及属性支持自动给你的css添加前缀前缀：[详情点这里](http://www.jianshu.com/p/f5b0b92e6b0f?_blank)
-- babel-core：babel转码的核心，必须安装[bable详情点这里(阮一峰)](http://www.ruanyifeng.com/blog/2016/01/babel.html?_blank)
+- autoprefixer：postcss-loader的一个插件,使用一个数据库根据当前浏览器的普及度以及属性支持自动给你的css添加前缀前缀：[详情点这里](http://www.jianshu.com/p/f5b0b92e6b0f)
+- babel-core：babel转码的核心，必须安装[bable详情点这里(阮一峰)](http://www.ruanyifeng.com/blog/2016/01/babel.html)
 - babel-loader：babel加载器，配置babel编译必备
-- babel-plugin-add-module-exports：babel对export default{}支持不好，不想写成module.exports就需要安装[点这里](https://segmentfault.com/q/1010000005761096?_ea=902448?_blank)
+- babel-plugin-add-module-exports：babel对export default{}支持不好，不想写成module.exports就需要安装[点这里](https://segmentfault.com/q/1010000005761096?_ea=902448)
 - babel-plugin-react-transform：代替react-hot-loader的插件，是基于Babel Plugin的。这是一个基本的架子，要实现热替换还要安装其他插件。
 - react-transform-hmr：安装这个才能实现热替换的功能。
 - babel-preset-es2015：babel转译预设规则(转es5)
@@ -41,7 +41,8 @@ SPA所有脚本都加进来，如果出现一个JS错误，那很可能整个网
 - css-loader：允许引入css文件
 - style-loader：为了在html中以style的方式嵌入css
 - postcss-loader：一个插件平台，这里只要用其autoprefixer功能
-- eslint-loader：代码规范检查[点这里](http://www.tuicool.com/articles/7JZZJzn?_blank)
+- eslint-loader：代码规范检查[点这里](http://www.tuicool.com/articles/7JZZJzn)
+- eslint-plugin-react：eslint插件，提供react代码规范规则
 - extract-text-webpack-plugin：分离css文件
 - url-loader：图片与字体加载器,file-loader的上层封装,依赖file-loader
 - file-loader：图片与字体加载器
@@ -53,13 +54,13 @@ SPA所有脚本都加进来，如果出现一个JS错误，那很可能整个网
 - less-loader：less加载器
 - open-browser-webpack-plugin：打包完成自动打开浏览器的插件
 - webpack：一代神器
-- webpack-dev-server：一个小型的Node.js Express服务器，可实现代码修改自动[看这里](https://segmentfault.com/a/1190000006964335_blank)
+- webpack-dev-server：一个小型的Node.js Express服务器，可实现代码修改自动[看这里](https://segmentfault.com/a/1190000006964335)
   
 上线依赖模块：
 - es6-promise：使用fetch时为了兼容老版本需要安装
-- immutable：react性能优化，需要学习新的API[immutable](https://zhuanlan.zhihu.com/p/20295971?columnSlug=purerender_blank)
+- immutable：react性能优化，需要学习新的API[immutable](https://zhuanlan.zhihu.com/p/20295971?columnSlug=purerender)
 - react：
-- react-addons-css-transition-group：实现组件出现与消失的css3过渡动画[官方地址](https://facebook.github.io/react/docs/animation.html_blank)
+- react-addons-css-transition-group：实现组件出现与消失的css3过渡动画[官方地址](https://facebook.github.io/react/docs/animation.html)
 - react-addons-pure-render-mixin：用以替换shouldComponentUpdate，优化性能
 - react-dom：
 - react-redux：
@@ -101,7 +102,7 @@ plugins:[
     new webpack.HotModuleReplacementPlugin()
 ]
 ```
-[看这里](http://segmentfault.com/a/1190000002767365#articleHeader6?_blank)
+[看这里](http://segmentfault.com/a/1190000002767365#articleHeader6)
 
 ### open-browser-webpack-plugin
 ```
@@ -235,7 +236,7 @@ react性能优化非常重要的一环。组件接受新的state或者props时�
 
 ### react性能优化
 - 介绍PureComponent
-[点这里](http://www.open-open.com/lib/view/1484466792204?_blank)
+[点这里](http://www.open-open.com/lib/view/1484466792204)
 - 性能检测,检测优化结果
 npm i react-addons-perf --save
 ```
